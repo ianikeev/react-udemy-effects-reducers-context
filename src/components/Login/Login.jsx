@@ -44,18 +44,19 @@ const Login = (props) => {
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
-  useEffect(() => {
-    console.log("EFFECT RUNNING");
-  }); // without dependencies runs on each component render cycle
+  // useEffect(() => {
+  //   console.log("EFFECT RUNNING");
+  // }); // without dependencies runs on each component render cycle
 
   useEffect(() => {
+    console.log("Checking form validity");
     const identifier = setTimeout(() => {
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
       clearTimeout(identifier);
-      console.log("CLEANUP");
+      // console.log("CLEANUP");
     };
   }, [emailIsValid, passwordIsValid]);
 
