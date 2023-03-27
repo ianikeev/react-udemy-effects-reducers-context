@@ -40,20 +40,24 @@ const Login = (props) => {
     isValid: null,
   });
 
+  // Object destructuring and alias assignment
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
+
   useEffect(() => {
     console.log("EFFECT RUNNING");
   }); // without dependencies runs on each component render cycle
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      setFormIsValid(emailState.isValid && passwordState.isValid);
+      setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
       clearTimeout(identifier);
       console.log("CLEANUP");
     };
-  }, [emailState, passwordState]);
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
